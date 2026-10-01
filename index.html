@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saad Tahir | Data Scientist & QA Automation Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#0d1117',
+                            card: '#161b22',
+                            cardHover: '#1f242d',
+                            border: '#30363d',
+                            cyan: '#58a6ff',
+                            purple: '#bc8cff',
+                            emerald: '#3fb950',
+                            accentWood: '#3b2d28',
+                            text: '#c9d1d9',
+                            heading: '#f0f6fc'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(22, 27, 34, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(48, 54, 61, 0.8);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(88, 166, 255, 0.4);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(88, 166, 255, 0.15);
+        }
+
+        .glow-text-cyan {
+            text-shadow: 0 0 12px rgba(88, 166, 255, 0.5);
+        }
+
+        .glow-text-purple {
+            text-shadow: 0 0 12px rgba(188, 140, 255, 0.5);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #58a6ff 0%, #bc8cff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-border-btn {
+            position: relative;
+            background: #161b22;
+            border-radius: 0.5rem;
+            z-index: 1;
+        }
+
+        .gradient-border-btn::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; right: -1px; bottom: -1px;
+            background: linear-gradient(135deg, #58a6ff, #bc8cff);
+            border-radius: 0.56rem;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .gradient-border-btn:hover::before {
+            opacity: 1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d1117;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #21262d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #30363d;
+        }
+
+        /* Canvas Particle Background */
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-brand-cyan/20 selection:text-brand-cyan">
+
+    <!-- Interactive Particle Canvas Background -->
+    <canvas id="bgCanvas"></canvas>
+
+    <div class="relative z-10 flex flex-col min-h-screen">
+        
+        <header class="sticky top-0 z-50 w-full glass-card border-b border-brand-border/60 bg-brand-bg/80 backdrop-blur-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center space-x-2 group">
+                    <span class="font-mono text-xl font-bold gradient-text">&lt;S.Tahir /&gt;</span>
+                </a>
+
+                <!-- Desktop Nav Navigation -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#about" class="hover:text-brand-cyan transition-colors">About</a>
+                    <a href="#skills" class="hover:text-brand-cyan transition-colors">Skills</a>
+                    <a href="#projects" class="hover:text-brand-cyan transition-colors">Projects</a>
+                    <a href="#terminal" class="hover:text-brand-cyan transition-colors">Terminal</a>
+                    <a href="#contact" class="hover:text-brand-cyan transition-colors">Contact</a>
+                </nav>
+
+                <!-- Social Action Buttons -->
+                <div class="hidden sm:flex items-center space-x-4">
+                    <a href="https://github.com/saadtahir72" target="_blank" rel="noopener noreferrer" 
+                       class="p-2 text-gray-400 hover:text-white hover:bg-brand-border/40 rounded-lg transition-all" title="GitHub Profile">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" 
+                       class="p-2 text-gray-400 hover:text-brand-cyan hover:bg-brand-border/40 rounded-lg transition-all" title="LinkedIn Profile">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#contact" class="px-4 py-2 text-xs font-mono font-semibold text-brand-cyan bg-brand-cyan/10 border border-brand-cyan/30 rounded-lg hover:bg-brand-cyan/20 transition-all">
+                        Hire Me
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 text-gray-400 hover:text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Nav Dropdown -->
+            <div id="mobileMenu" class="hidden md:hidden border-t border-brand-border bg-brand-card/95 px-4 pt-2 pb-4 space-y-3">
+                <a href="#about" class="block py-2 text-gray-300 hover:text-brand-cyan">About</a>
+                <a href="#skills" class="block py-2 text-gray-300 hover:text-brand-cyan">Skills</a>
+                <a href="#projects" class="block py-2 text-gray-300 hover:text-brand-cyan">Projects</a>
+                <a href="#terminal" class="block py-2 text-gray-300 hover:text-brand-cyan">Terminal</a>
+                <a href="#contact" class="block py-2 text-gray-300 hover:text-brand-cyan">Contact</a>
+                <div class="flex items-center space-x-4 pt-2 border-t border-brand-border/50">
+                    <a href="https://github.com/saadtahir72" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-github text-lg"></i> GitHub</a>
+                    <a href="https://linkedin.com" target="_blank" class="text-gray-400 hover:text-brand-cyan"><i class="fab fa-linkedin text-lg"></i> LinkedIn</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24">
+
+            <section class="pt-12 pb-8 md:pt-20 md:pb-16 flex flex-col items-start justify-center min-h-[80vh]">
+                <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-xs font-mono mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse"></span>
+                    <span>Available for Data Science & QA Roles</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-brand-heading tracking-tight mb-4">
+                    Hi, I'm <span class="gradient-text">Saad Tahir</span> 👋
+                </h1>
+
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-300 mb-6">
+                    Data Scientist & QA Automation Engineer
+                </h2>
+
+                <p class="max-w-2xl text-lg text-gray-400 mb-8 leading-relaxed">
+                    Specializing in <span class="text-brand-cyan font-medium">Data Engineering</span>, 
+                    <span class="text-brand-purple font-medium">Machine Learning (LSTM & EDA)</span>, 
+                    Automated Testing Frameworks, and Building High-Quality Scalable Software Systems.
+                </p>
+
+                <div class="flex flex-wrap gap-4 items-center">
+                    <a href="#projects" class="px-6 py-3 rounded-lg font-medium text-white bg-brand-cyan/20 border border-brand-cyan/40 hover:bg-brand-cyan/30 transition-all flex items-center space-x-2 group">
+                        <span>View Featured Work</span>
+                        <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    
+                    <a href="https://github.com/saadtahir72" target="_blank" rel="noopener noreferrer" 
+                       class="px-6 py-3 rounded-lg font-medium text-gray-300 bg-brand-card border border-brand-border hover:border-gray-500 hover:text-white transition-all flex items-center space-x-2">
+                        <i class="fab fa-github text-lg"></i>
+                        <span>Explore GitHub</span>
+                    </a>
+
+                    <a href="#contact" class="px-6 py-3 rounded-lg font-medium text-brand-purple bg-brand-purple/10 border border-brand-purple/30 hover:bg-brand-purple/20 transition-all">
+                        Get In Touch
+                    </a>
+                </div>
+
+                <!-- Quick Stat Highlights -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-16 w-full pt-8 border-t border-brand-border/40">
+                    <div>
+                        <div class="text-2xl font-mono font-bold text-brand-heading">BS DS</div>
+                        <div class="text-xs text-gray-400">Data Science Graduate</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-mono font-bold text-brand-cyan">100%</div>
+                        <div class="text-xs text-gray-400">Selenium Automation</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-mono font-bold text-brand-purple">EDA & ML</div>
+                        <div class="text-xs text-gray-400">Predictive Modeling</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-mono font-bold text-brand-emerald">Lahore, PK</div>
+                        <div class="text-xs text-gray-400">Based Location</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="scroll-mt-24">
+                <div class="flex items-center space-x-3 mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-brand-heading">01. About Me</h2>
+                    <div class="h-px bg-brand-border flex-grow max-w-xs"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="md:col-span-2 space-y-4 text-gray-300 leading-relaxed">
+                        <p>
+                            I hold a <strong class="text-brand-heading">Bachelor of Science in Data Science</strong> from the 
+                            <span class="text-brand-cyan">University of Management & Technology (UMT)</span>, Lahore. 
+                            My passion lies at the intersection of data-driven insights and rigorous software quality assurance.
+                        </p>
+                        <p>
+                            With hands-on expertise spanning <span class="text-brand-purple">Python data preprocessing, Exploratory Data Analysis (EDA)</span>, 
+                            and deep learning architectures like <span class="text-brand-purple font-mono">LSTM models</span>, I bring strong analytical thinking 
+                            to software systems.
+                        </p>
+                        <p>
+                            Simultaneously, I specialize in <span class="text-brand-cyan">Automated & Manual Quality Assurance</span>. From writing robust Selenium Webdriver suites to conducting UI/UX design-to-code integrity audits against Figma specifications, I ensure software isn't just intelligent, but rock-solid.
+                        </p>
+
+                        <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-mono">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-check-circle text-brand-cyan"></i>
+                                <span>Python & SQL Pipelines</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-check-circle text-brand-cyan"></i>
+                                <span>Selenium Test Automation</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-check-circle text-brand-cyan"></i>
+                                <span>Deep Learning (TensorFlow/Keras)</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-check-circle text-brand-cyan"></i>
+                                <span>Chrome Extensions & Automation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-xl flex flex-col justify-between border border-brand-border">
+                        <div>
+                            <div class="w-12 h-12 rounded-lg bg-brand-cyan/10 text-brand-cyan flex items-center justify-center text-xl mb-4">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-brand-heading mb-1">Education</h3>
+                            <p class="text-sm font-medium text-brand-cyan">BS Data Science</p>
+                            <p class="text-xs text-gray-400 mb-4">University of Management & Technology, Lahore</p>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                Core focus: Data Mining, Statistical Modeling, Machine Learning, Database Management Systems, Software Engineering.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-brand-border/50 text-xs text-gray-400 flex items-center justify-between">
+                            <span><i class="fas fa-map-marker-alt text-brand-purple mr-1"></i> Lahore, Pakistan</span>
+                            <span class="text-brand-emerald font-mono">Graduate</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills" class="scroll-mt-24">
+                <div class="flex items-center space-x-3 mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-brand-heading">02. Tech Stack & Competencies</h2>
+                    <div class="h-px bg-brand-border flex-grow max-w-xs"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Category 1: Data Science & Analytics -->
+                    <div class="glass-card p-6 rounded-xl space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-lg bg-brand-cyan/15 text-brand-cyan flex items-center justify-center text-lg">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-brand-heading">Data Science & Analytics</h3>
+                        </div>
+                        <p class="text-xs text-gray-400">Extracting actionable insights, cleaning datasets, and training ML models.</p>
+                        
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200"><i class="fab fa-python text-brand-cyan mr-1"></i> Python</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">Pandas & NumPy</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200"><i class="fas fa-database text-brand-purple mr-1"></i> PostgreSQL</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">pgAdmin 4</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">Power BI</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">TensorFlow / Keras</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">LSTM Models</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">Plotly & Seaborn</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: QA & Automation -->
+                    <div class="glass-card p-6 rounded-xl space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-lg bg-brand-purple/15 text-brand-purple flex items-center justify-center text-lg">
+                                <i class="fas fa-vial"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-brand-heading">QA & Automation</h3>
+                        </div>
+                        <p class="text-xs text-gray-400">Ensuring zero-defect releases with automated test suites & audits.</p>
+                        
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200"><i class="fas fa-robot text-brand-emerald mr-1"></i> Selenium WebDriver</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">Python Automation</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">Manual QA</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">UI/UX Code Audits</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">Figma Design Inspection</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">XPath & Selectors</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">Bug Tracking & Reporting</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: Developer Tools & Utilities -->
+                    <div class="glass-card p-6 rounded-xl space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-lg bg-brand-emerald/15 text-brand-emerald flex items-center justify-center text-lg">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-brand-heading">Developer Tools</h3>
+                        </div>
+                        <p class="text-xs text-gray-400">Workflow optimization, extensions, and version control tools.</p>
+                        
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200"><i class="fab fa-github text-white mr-1"></i> GitHub</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200"><i class="fab fa-chrome text-brand-cyan mr-1"></i> Chrome Extension Dev</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">JavaScript ES6</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">Git Version Control</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">VS Code</span>
+                            <span class="px-2.5 py-1 text-xs font-mono rounded-md bg-brand-border/50 text-gray-200">Google Colab</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects" class="scroll-mt-24">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+                    <div class="flex items-center space-x-3">
+                        <h2 class="text-2xl sm:text-3xl font-bold text-brand-heading">03. Featured Projects</h2>
+                        <div class="h-px bg-brand-border flex-grow max-w-xs"></div>
+                    </div>
+
+                    <!-- Filter Buttons -->
+                    <div class="flex flex-wrap gap-2 text-xs font-mono">
+                        <button onclick="filterProjects('all')" class="project-filter-btn active-filter px-3 py-1.5 rounded-md bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/40 transition-all" data-category="all">All</button>
+                        <button onclick="filterProjects('ds')" class="project-filter-btn px-3 py-1.5 rounded-md bg-brand-card text-gray-400 border border-brand-border hover:text-white transition-all" data-category="ds">Data Science</button>
+                        <button onclick="filterProjects('qa')" class="project-filter-btn px-3 py-1.5 rounded-md bg-brand-card text-gray-400 border border-brand-border hover:text-white transition-all" data-category="qa">QA & Automation</button>
+                        <button onclick="filterProjects('tools')" class="project-filter-btn px-3 py-1.5 rounded-md bg-brand-card text-gray-400 border border-brand-border hover:text-white transition-all" data-category="tools">Tools & Extensions</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projectsContainer">
+                    
+                    <!-- Project 1: Clicky -->
+                    <div class="project-card glass-card rounded-xl overflow-hidden flex flex-col justify-between p-6 transition-all" data-category="tools">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono px-2.5 py-1 rounded bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">Chrome Extension</span>
+                                <a href="https://github.com/saadtahir72" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-github text-lg"></i></a>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-heading mb-2">Clicky - AI Applies</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                                Custom Google Chrome extension designed for automated job application tracking, parsing webpage metadata, and syncing directly with Google Sheets.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">JavaScript</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">Chrome API</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">Google Sheets API</span>
+                            </div>
+                            <button onclick="openModal('clicky')" class="w-full py-2 text-xs font-mono text-center text-brand-cyan bg-brand-cyan/10 rounded hover:bg-brand-cyan/20 transition-all">
+                                View Architecture & Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Global Automotive EDA -->
+                    <div class="project-card glass-card rounded-xl overflow-hidden flex flex-col justify-between p-6 transition-all" data-category="ds">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono px-2.5 py-1 rounded bg-brand-purple/10 text-brand-purple border border-brand-purple/20">Data Analytics</span>
+                                <a href="https://github.com/saadtahir72" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-github text-lg"></i></a>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-heading mb-2">Global Automotive EDA</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                                Exploratory Data Analysis & visual analytics on comprehensive automotive datasets using Python, interactive Plotly charts, and Seaborn heatmaps.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">Python</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">Pandas</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">Plotly</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">Seaborn</span>
+                            </div>
+                            <button onclick="openModal('automotive')" class="w-full py-2 text-xs font-mono text-center text-brand-purple bg-brand-purple/10 rounded hover:bg-brand-purple/20 transition-all">
+                                View Analytics & Highlights
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Sequential LSTM Classification -->
+                    <div class="project-card glass-card rounded-xl overflow-hidden flex flex-col justify-between p-6 transition-all" data-category="ds">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono px-2.5 py-1 rounded bg-brand-purple/10 text-brand-purple border border-brand-purple/20">Machine Learning</span>
+                                <a href="https://github.com/saadtahir72" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-github text-lg"></i></a>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-heading mb-2">Sequential LSTM Model</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                                Deep learning model engineered with TensorFlow & Keras for sequential data classification, time-series forecasting, and pattern recognition.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">TensorFlow</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">Keras</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">LSTM</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">Python</span>
+                            </div>
+                            <button onclick="openModal('lstm')" class="w-full py-2 text-xs font-mono text-center text-brand-purple bg-brand-purple/10 rounded hover:bg-brand-purple/20 transition-all">
+                                View Model Specs
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Automated Web QA Suite -->
+                    <div class="project-card glass-card rounded-xl overflow-hidden flex flex-col justify-between p-6 transition-all" data-category="qa">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono px-2.5 py-1 rounded bg-brand-emerald/10 text-brand-emerald border border-brand-emerald/20">QA Automation</span>
+                                <a href="https://github.com/saadtahir72" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-github text-lg"></i></a>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-heading mb-2">Automated Web QA Suite</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                                Selenium Python automated testing framework featuring multi-browser compatibility, locator validation, form submission automation, and visual regression checks.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">Selenium</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">Python</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">XPath</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">PyTest</span>
+                            </div>
+                            <button onclick="openModal('qa')" class="w-full py-2 text-xs font-mono text-center text-brand-emerald bg-brand-emerald/10 rounded hover:bg-brand-emerald/20 transition-all">
+                                View Test Architecture
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: E-Commerce Data Pipeline -->
+                    <div class="project-card glass-card rounded-xl overflow-hidden flex flex-col justify-between p-6 transition-all" data-category="ds">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-mono px-2.5 py-1 rounded bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">Database & ETL</span>
+                                <a href="https://github.com/saadtahir72" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-github text-lg"></i></a>
+                            </div>
+                            <h3 class="text-xl font-bold text-brand-heading mb-2">E-Commerce Data Pipeline</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                                End-to-end relational data pipeline including raw CSV cleaning, SQL schema normalization, and migration scripts executed via pgAdmin 4.
+                            </p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">PostgreSQL</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">pgAdmin 4</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">SQL Schema</span>
+                                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-border/40 text-gray-300">Python</span>
+                            </div>
+                            <button onclick="openModal('ecommerce')" class="w-full py-2 text-xs font-mono text-center text-brand-cyan bg-brand-cyan/10 rounded hover:bg-brand-cyan/20 transition-all">
+                                View Schema & SQL Pipeline
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="terminal" class="scroll-mt-24">
+                <div class="flex items-center space-x-3 mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-brand-heading">04. Developer Terminal</h2>
+                    <div class="h-px bg-brand-border flex-grow max-w-xs"></div>
+                </div>
+
+                <div class="glass-card rounded-xl overflow-hidden border border-brand-border shadow-2xl font-mono text-xs">
+                    <!-- Terminal Top Bar -->
+                    <div class="bg-[#161b22] px-4 py-3 flex items-center justify-between border-b border-brand-border">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                            <span class="text-gray-400 text-[11px] ml-2">saadtahir72@github:~$ status</span>
+                        </div>
+                        <span class="text-gray-500 text-[10px]">zsh - 80x24</span>
+                    </div>
+
+                    <!-- Terminal Window Body -->
+                    <div class="p-6 space-y-4 text-gray-300 bg-[#0d1117]/90 min-h-[220px]">
+                        <div>
+                            <span class="text-brand-cyan">saadtahir72@github</span>:<span class="text-brand-purple">~</span>$ help
+                            <p class="text-gray-400 mt-1">Available commands: <span class="text-brand-emerald">whoami</span>, <span class="text-brand-emerald">skills</span>, <span class="text-brand-emerald">contact</span>, <span class="text-brand-emerald">clear</span></p>
+                        </div>
+
+                        <div id="terminalOutput"></div>
+
+                        <!-- Interactive Terminal Line -->
+                        <div class="flex items-center space-x-2 pt-2">
+                            <span class="text-brand-cyan">saadtahir72@github</span>:<span class="text-brand-purple">~</span>$ 
+                            <input type="text" id="terminalInput" class="bg-transparent border-none outline-none flex-grow text-brand-heading font-mono focus:ring-0 p-0" placeholder="Type a command (e.g., 'whoami')" autofocus>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="scroll-mt-24 pt-8">
+                <div class="glass-card p-8 sm:p-12 rounded-2xl border border-brand-border text-center relative overflow-hidden">
+                    <div class="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-brand-cyan/10 filter blur-3xl pointer-events-none"></div>
+                    <div class="absolute -left-12 -bottom-12 w-48 h-48 rounded-full bg-brand-purple/10 filter blur-3xl pointer-events-none"></div>
+
+                    <span class="text-xs font-mono text-brand-cyan uppercase tracking-widest font-semibold">What's Next?</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-brand-heading mt-2 mb-4">Let's Work Together</h2>
+                    <p class="max-w-xl mx-auto text-gray-400 text-sm sm:text-base leading-relaxed mb-8">
+                        I am currently open to full-time roles, freelance projects, and open-source collaborations in 
+                        <strong class="text-gray-200">Data Science, Analytics, and Quality Assurance Automation</strong>.
+                    </p>
+
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="mailto:saadtahir@example.com" class="gradient-border-btn px-8 py-3 text-sm font-semibold text-white flex items-center space-x-2">
+                            <i class="fas fa-envelope text-brand-cyan"></i>
+                            <span>Send Email Message</span>
+                        </a>
+
+                        <a href="https://github.com/saadtahir72" target="_blank" rel="noopener noreferrer" 
+                           class="px-8 py-3 text-sm font-semibold text-gray-300 bg-brand-card border border-brand-border rounded-lg hover:border-gray-400 hover:text-white transition-all flex items-center space-x-2">
+                            <i class="fab fa-github text-lg"></i>
+                            <span>Visit GitHub Profile</span>
+                        </a>
+                    </div>
+
+                    <div class="mt-8 text-xs text-gray-500 font-mono">
+                        <i class="fas fa-map-marker-alt text-brand-purple mr-1"></i> Based in Lahore, Punjab, Pakistan 🇵🇰
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="mt-20 border-t border-brand-border/60 bg-brand-bg/90 py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 space-y-4 sm:space-y-0">
+                <div>
+                    Designed & Built by <span class="text-gray-300 font-medium">Saad Tahir</span>
+                </div>
+                <div class="font-mono">
+                    Hosted on <a href="https://pages.github.com" target="_blank" class="text-brand-cyan hover:underline">GitHub Pages</a>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="https://github.com/saadtahir72" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank" class="hover:text-brand-cyan transition-colors"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Modal for Detailed Project Views -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-card max-w-2xl w-full rounded-2xl border border-brand-border p-6 sm:p-8 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. Canvas Particle Background Animation ---
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.color = Math.random() > 0.5 ? 'rgba(88, 166, 255, ' : 'rgba(188, 140, 255, ';
+                this.alpha = Math.random() * 0.4 + 0.1;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color + this.alpha + ')';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 45; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+        // --- 2. Mobile Navigation Toggle ---
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- 3. Project Filter Logic ---
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const btns = document.querySelectorAll('.project-filter-btn');
+
+            btns.forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.classList.add('bg-brand-cyan/20', 'text-brand-cyan', 'border-brand-cyan/40');
+                    btn.classList.remove('bg-brand-card', 'text-gray-400', 'border-brand-border');
+                } else {
+                    btn.classList.remove('bg-brand-cyan/20', 'text-brand-cyan', 'border-brand-cyan/40');
+                    btn.classList.add('bg-brand-card', 'text-gray-400', 'border-brand-border');
+                }
+            });
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // --- 4. Interactive Terminal Simulation ---
+        const terminalInput = document.getElementById('terminalInput');
+        const terminalOutput = document.getElementById('terminalOutput');
+
+        const commands = {
+            whoami: "<span class='text-brand-cyan'>Saad Tahir</span> — Data Scientist & QA Automation Engineer based in Lahore, Pakistan.",
+            skills: "<span class='text-brand-purple'>Skills:</span> Python, Selenium WebDriver, TensorFlow, Keras, PostgreSQL, Power BI, JavaScript, Chrome Extensions.",
+            contact: "<span class='text-brand-emerald'>Email:</span> saadtahir@example.com | <span class='text-brand-cyan'>GitHub:</span> github.com/saadtahir72",
+            clear: "CLEAR"
+        };
+
+        terminalInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const cmd = terminalInput.value.trim().toLowerCase();
+                terminalInput.value = '';
+
+                if (cmd === 'clear') {
+                    terminalOutput.innerHTML = '';
+                    return;
+                }
+
+                const line = document.createElement('div');
+                line.className = 'mt-2';
+
+                if (commands[cmd]) {
+                    line.innerHTML = `<span class="text-brand-cyan">saadtahir72@github</span>:~$ ${cmd}<br><p class="text-gray-300 mt-1">${commands[cmd]}</p>`;
+                } else {
+                    line.innerHTML = `<span class="text-brand-cyan">saadtahir72@github</span>:~$ ${cmd}<br><p class="text-red-400 mt-1">Command not found: '${cmd}'. Type 'help' for available commands.</p>`;
+                }
+
+                terminalOutput.appendChild(line);
+            }
+        });
+
+        // --- 5. Project Details Modal Logic ---
+        const modal = document.getElementById('projectModal');
+        const modalContent = document.getElementById('modalContent');
+
+        const projectDetails = {
+            clicky: `
+                <div class="space-y-4">
+                    <span class="text-xs font-mono text-brand-cyan px-2 py-1 rounded bg-brand-cyan/10">Chrome Extension & Automation</span>
+                    <h3 class="text-2xl font-bold text-brand-heading">Clicky - AI Applies Chrome Extension</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        A browser extension built using Chrome Manifest V3, JavaScript, and external Web APIs. Designed to automate the tracking of job application workflows, parse dynamic DOM elements, and store user activity logs directly into Google Sheets.
+                    </p>
+                    <div class="p-4 rounded-lg bg-brand-bg/80 border border-brand-border space-y-2">
+                        <div class="text-xs font-mono text-brand-purple font-semibold">Key Highlights:</div>
+                        <ul class="text-xs text-gray-400 list-disc list-inside space-y-1">
+                            <li>DOM scraping & dynamic element identification using DOM MutationObservers</li>
+                            <li>Integration with Google Sheets REST API for real-time synchronization</li>
+                            <li>Custom background service workers for state persistence</li>
+                        </ul>
+                    </div>
+                </div>
+            `,
+            automotive: `
+                <div class="space-y-4">
+                    <span class="text-xs font-mono text-brand-purple px-2 py-1 rounded bg-brand-purple/10">Data Analytics</span>
+                    <h3 class="text-2xl font-bold text-brand-heading">Global Automotive Exploratory Data Analysis</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        In-depth statistical analysis and data cleaning on a 100,000+ record automotive dataset. Analyzed manufacturer pricing trends, fuel efficiency metrics, and engine performance correlations.
+                    </p>
+                    <div class="p-4 rounded-lg bg-brand-bg/80 border border-brand-border space-y-2">
+                        <div class="text-xs font-mono text-brand-cyan font-semibold">Key Highlights:</div>
+                        <ul class="text-xs text-gray-400 list-disc list-inside space-y-1">
+                            <li>Handled missing data imputations & outlier detection using IQR metrics</li>
+                            <li>Constructed correlation matrices using Seaborn heatmaps</li>
+                            <li>Created interactive Plotly scatter plots for multi-variable distribution</li>
+                        </ul>
+                    </div>
+                </div>
+            `,
+            lstm: `
+                <div class="space-y-4">
+                    <span class="text-xs font-mono text-brand-purple px-2 py-1 rounded bg-brand-purple/10">Deep Learning</span>
+                    <h3 class="text-2xl font-bold text-brand-heading">Sequential LSTM Classification Model</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        Long Short-Term Memory (LSTM) neural network designed for sequence classification and temporal pattern recognition. Built using Python, TensorFlow, Keras, and NumPy.
+                    </p>
+                    <div class="p-4 rounded-lg bg-brand-bg/80 border border-brand-border space-y-2">
+                        <div class="text-xs font-mono text-brand-emerald font-semibold">Key Highlights:</div>
+                        <ul class="text-xs text-gray-400 list-disc list-inside space-y-1">
+                            <li>Multi-layer Recurrent Neural Network (RNN) architecture with Dropout regularization</li>
+                            <li>Adam Optimizer with custom learning rate schedules and early stopping</li>
+                            <li>Achieved high validation accuracy on sequential dataset benchmarks</li>
+                        </ul>
+                    </div>
+                </div>
+            `,
+            qa: `
+                <div class="space-y-4">
+                    <span class="text-xs font-mono text-brand-emerald px-2 py-1 rounded bg-brand-emerald/10">QA Automation</span>
+                    <h3 class="text-2xl font-bold text-brand-heading">Automated Web QA Suite</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        Scalable end-to-end web testing framework using Python and Selenium WebDriver. Validates complex user workflows, dynamic locators, and form interactions with automated HTML reporting.
+                    </p>
+                    <div class="p-4 rounded-lg bg-brand-bg/80 border border-brand-border space-y-2">
+                        <div class="text-xs font-mono text-brand-cyan font-semibold">Key Highlights:</div>
+                        <ul class="text-xs text-gray-400 list-disc list-inside space-y-1">
+                            <li>Implemented Page Object Model (POM) design pattern for maintainability</li>
+                            <li>Dynamic explicit waits handling asynchronous AJAX & DOM changes</li>
+                            <li>Figma design-to-code visual audits for spacing & typography integrity</li>
+                        </ul>
+                    </div>
+                </div>
+            `,
+            ecommerce: `
+                <div class="space-y-4">
+                    <span class="text-xs font-mono text-brand-cyan px-2 py-1 rounded bg-brand-cyan/10">Database & ETL</span>
+                    <h3 class="text-2xl font-bold text-brand-heading">E-Commerce PostgreSQL Data Pipeline</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        Design and implementation of a relational e-commerce schema in PostgreSQL. Extracted raw CSV data, performed normalization (3NF), and developed SQL migration queries.
+                    </p>
+                    <div class="p-4 rounded-lg bg-brand-bg/80 border border-brand-border space-y-2">
+                        <div class="text-xs font-mono text-brand-purple font-semibold">Key Highlights:</div>
+                        <ul class="text-xs text-gray-400 list-disc list-inside space-y-1">
+                            <li>Entity-Relationship Diagram (ERD) design & foreign key indexing</li>
+                            <li>Optimized complex JOIN queries for inventory tracking and sales reports</li>
+                            <li>Automated data ingestion pipeline using Python and psycopg2</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        };
+
+        function openModal(key) {
+            if (projectDetails[key]) {
+                modalContent.innerHTML = projectDetails[key];
+                modal.classList.remove('hidden');
+            }
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        // Close modal on background click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    </script>
+</body>
+</html>
