@@ -213,7 +213,7 @@
                                 <div class="pl-2 border-l-2 border-slate-800 space-y-2">
                                     <p><span class="text-cyan-400">NLP & LLMs:</span> Google Gemini API, Custom Structured Outputs, Pydantic Validation</p>
                                     <p><span class="text-emerald-400">Data Engineering:</span> DuckDB OLAP Stores, Pandas Pipeline Design, Rate-Limiting Engine</p>
-                                    <p><span class="text-yellow-400">Machine Learning:</span> SVM Classification, LSTM Neural Networks, Scikit-Learn Regression</p>
+                                    <p><span class="text-yellow-400">Machine Learning:</span> XGBoost / Random Forest, SVM Classification, LSTM Neural Networks</p>
                                     <p><span class="text-indigo-400">Quality Assurance:</span> Figma UI/UX Auditing, Positive/Negative Test Suites, Selenium</p>
                                 </div>
                                 
@@ -256,7 +256,7 @@
                         </div>
                         <h3 class="text-xl font-bold text-slate-100">Machine Learning & NLP</h3>
                         <p class="text-sm text-slate-400 leading-relaxed">
-                            Extensive experience crafting automated ETL pipelines with generative AI integration, character-level deep learning sequence models (LSTM), and supervised regression models.
+                            Extensive experience crafting automated ETL pipelines with generative AI integration, predictive market valuation engines, sequence models (LSTM), and supervised regression models.
                         </p>
                     </div>
 
@@ -274,7 +274,7 @@
             </div>
         </section>
 
-        <!-- Projects Section (Exact Sequence Applied) -->
+        <!-- Projects Section -->
         <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-slate-800/60 bg-slate-950/40">
             <div class="max-w-7xl mx-auto space-y-12">
                 
@@ -296,12 +296,50 @@
                 <!-- Projects Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
 
-                    <!-- PROJECT 1: ICD-10 Clinical Note Pipeline (FLAGSHIP FIRST PROJECT) -->
-                    <div class="project-card glass-card rounded-2xl p-6 flex flex-col justify-between border-emerald-500/30 relative overflow-hidden group" data-category="ai-nlp">
+                    <!-- PROJECT 1: PKR Automotive Valuation Engine -->
+                    <div class="project-card glass-card rounded-2xl p-6 flex flex-col justify-between border-emerald-500/30 relative overflow-hidden group" data-category="ml">
                         <div class="absolute top-0 right-0 px-4 py-1.5 bg-gradient-to-l from-emerald-500 to-cyan-500 text-slate-950 text-xs font-extrabold uppercase rounded-bl-xl shadow-md">
-                            Flagship Project #1
+                            Featured ML Engine
                         </div>
 
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                                    <i class="fa-solid fa-car-side text-lg"></i>
+                                </div>
+                                <span class="text-xs font-mono text-emerald-400">Predictive ML / Valuation</span>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-slate-100 group-hover:text-emerald-400 transition-colors">
+                                PKR Automotive Valuation Engine
+                            </h3>
+
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                End-to-end Pakistani local used car market valuation system trained on 50,000+ real-world listings. Predicts market resale values in PKR based on mileage, model year, fuel type, transmission, and brand tiers with high precision.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Python</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">XGBoost / LightGBM</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Scikit-Learn</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Pandas</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-6 border-t border-slate-800/80 mt-6">
+                            <a href="https://github.com/saadtahir72/PKR-Automotive-Valuation-Engine" target="_blank" rel="noopener" class="inline-flex items-center space-x-2 text-xs font-semibold text-emerald-400 hover:text-emerald-300">
+                                <i class="fa-brands fa-github text-sm"></i>
+                                <span>GitHub Repository</span>
+                            </a>
+                            <button onclick="openModal('modal-pkr-auto')" class="text-xs font-semibold text-slate-400 hover:text-slate-100 flex items-center space-x-1">
+                                <span>Engine Details</span>
+                                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT 2: ICD-10 Clinical Note Pipeline -->
+                    <div class="project-card glass-card rounded-2xl p-6 flex flex-col justify-between group" data-category="ai-nlp">
                         <div class="space-y-4 pt-2">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
@@ -315,7 +353,7 @@
                             </h3>
 
                             <p class="text-sm text-slate-300 leading-relaxed">
-                                Automated, fault-tolerant ETL pipeline converting unstructured clinical physician text into standardized ICD-10-CM diagnostic records. Enforces deterministic Pydantic schema validation over Gemini 3.8 Flash, exact 12-second request pacing for free-tier compliance, and persistent DuckDB columnar storage.
+                                Automated, fault-tolerant ETL pipeline converting unstructured clinical physician text into standardized ICD-10-CM diagnostic records. Enforces deterministic Pydantic schema validation over Gemini 3.8 Flash, exact request pacing for free-tier compliance, and persistent DuckDB columnar storage.
                             </p>
 
                             <div class="flex flex-wrap gap-2 pt-2">
@@ -323,7 +361,6 @@
                                 <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Google Gemini API</span>
                                 <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Pydantic</span>
                                 <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">DuckDB</span>
-                                <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Pandas</span>
                             </div>
                         </div>
 
@@ -339,12 +376,8 @@
                         </div>
                     </div>
 
-                    <!-- PROJECT 2: HEALTHIFY ME (FLAGSHIP FYP SECOND PROJECT) -->
-                    <div class="project-card glass-card rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden group" data-category="ai-nlp">
-                        <div class="absolute top-0 right-0 px-4 py-1.5 bg-slate-800 text-slate-300 text-xs font-bold uppercase rounded-bl-xl">
-                            Flagship FYP #2
-                        </div>
-
+                    <!-- PROJECT 3: HEALTHIFY ME (FYP) -->
+                    <div class="project-card glass-card rounded-2xl p-6 flex flex-col justify-between group" data-category="ai-nlp">
                         <div class="space-y-4 pt-2">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
@@ -366,7 +399,6 @@
                                 <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Scikit-Learn (SVM)</span>
                                 <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">React.js</span>
                                 <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Node/Express</span>
-                                <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">MongoDB</span>
                             </div>
                         </div>
 
@@ -382,7 +414,7 @@
                         </div>
                     </div>
 
-                    <!-- PROJECT 3: Indian vs. Non-Indian Name Classification (THIRD PROJECT) -->
+                    <!-- PROJECT 4: Indian vs. Non-Indian Name Classification -->
                     <div class="project-card glass-card rounded-2xl p-6 flex flex-col justify-between group" data-category="ai-nlp">
                         <div class="space-y-4">
                             <div class="flex items-center space-x-3">
@@ -416,7 +448,7 @@
                         </div>
                     </div>
 
-                    <!-- PROJECT 4: Clicky - AI Applies (FOURTH PROJECT) -->
+                    <!-- PROJECT 5: Clicky - AI Applies -->
                     <div class="project-card glass-card rounded-2xl p-6 flex flex-col justify-between group" data-category="analytics">
                         <div class="space-y-4">
                             <div class="flex items-center space-x-3">
@@ -450,7 +482,7 @@
                         </div>
                     </div>
 
-                    <!-- PROJECT 5: Automobile Sales Predictive ML (FIFTH PROJECT) -->
+                    <!-- PROJECT 6: Automobile Sales Predictive ML -->
                     <div class="project-card glass-card rounded-2xl p-6 flex flex-col justify-between group" data-category="ml">
                         <div class="space-y-4">
                             <div class="flex items-center space-x-3">
@@ -472,7 +504,6 @@
                                 <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Python</span>
                                 <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Scikit-Learn</span>
                                 <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Plotly Express</span>
-                                <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Seaborn</span>
                             </div>
                         </div>
 
@@ -488,7 +519,7 @@
                         </div>
                     </div>
 
-                    <!-- PROJECT 6: Online Retail Analytics (SIXTH PROJECT) -->
+                    <!-- PROJECT 7: Online Retail Analytics -->
                     <div class="project-card glass-card rounded-2xl p-6 flex flex-col justify-between group" data-category="analytics">
                         <div class="space-y-4">
                             <div class="flex items-center space-x-3">
@@ -510,7 +541,6 @@
                                 <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Python</span>
                                 <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Pandas</span>
                                 <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Matplotlib</span>
-                                <span class="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">Seaborn</span>
                             </div>
                         </div>
 
@@ -523,7 +553,7 @@
                         </div>
                     </div>
 
-                    <!-- PROJECT 7: Car Price Prediction (SEVENTH PROJECT) -->
+                    <!-- PROJECT 8: Car Price Prediction -->
                     <div class="project-card glass-card rounded-2xl p-6 flex flex-col justify-between group" data-category="ml">
                         <div class="space-y-4">
                             <div class="flex items-center space-x-3">
@@ -557,7 +587,7 @@
                         </div>
                     </div>
 
-                    <!-- PROJECT 8: Global Demographics (EIGHTH PROJECT) -->
+                    <!-- PROJECT 9: Global Demographics -->
                     <div class="project-card glass-card rounded-2xl p-6 flex flex-col justify-between group" data-category="analytics">
                         <div class="space-y-4">
                             <div class="flex items-center space-x-3">
@@ -767,7 +797,40 @@
         <p>© <span id="year"></span> Saad Tahir. Built & hosted on GitHub Pages (saadtahir72.github.io).</p>
     </footer>
 
-    <!-- MODAL 1: ICD-10 Clinical Note Processing Pipeline Modal -->
+    <!-- MODAL 1: PKR Automotive Valuation Engine Modal -->
+    <div id="modal-pkr-auto" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+        <div class="glass-panel max-w-2xl w-full rounded-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-start justify-between border-b border-slate-800 pb-4">
+                <div>
+                    <span class="text-xs font-mono text-emerald-400 uppercase">Valuation Architecture</span>
+                    <h3 class="text-xl font-bold text-slate-100">PKR Automotive Valuation Engine</h3>
+                </div>
+                <button onclick="closeModal('modal-pkr-auto')" class="text-slate-400 hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-4 text-sm text-slate-300">
+                <p><strong class="text-slate-100">1. Data Ingestion & Preprocessing:</strong> Cleaned and standardized 50k+ raw vehicle market listings. Imputed missing values and applied target encoding for local vehicle brands and variants.</p>
+                <p><strong class="text-slate-100">2. Feature Engineering:</strong> Engineered vehicle age, depreciation rates, fuel efficiency categories, and transmission coefficients relevant to the Pakistani market.</p>
+                <p><strong class="text-slate-100">3. Predictive ML Models:</strong> Benchmarked XGBoost, LightGBM, and Random Forest Regressors, tuning hyper-parameters via GridSearch to achieve optimal $R^2$ and lowest RMSE.</p>
+                <p><strong class="text-slate-100">4. Deployment Pipeline:</strong> Exported calibrated models for fast inference and web integration.</p>
+                
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-emerald-400 overflow-x-auto">
+                    [PKR Vehicle Dataset] ──> Preprocessing & Encoding ──> XGBoost / LightGBM ──> Resale Price (PKR)
+                </div>
+            </div>
+
+            <div class="pt-4 flex justify-end space-x-3 border-t border-slate-800">
+                <a href="https://github.com/saadtahir72/PKR-Automotive-Valuation-Engine" target="_blank" rel="noopener" class="px-4 py-2 rounded-lg bg-emerald-500 text-slate-950 font-bold text-xs">
+                    View on GitHub
+                </a>
+                <button onclick="closeModal('modal-pkr-auto')" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 text-xs">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: ICD-10 Clinical Note Processing Pipeline Modal -->
     <div id="modal-icd10" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
         <div class="glass-panel max-w-2xl w-full rounded-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
             <div class="flex items-start justify-between border-b border-slate-800 pb-4">
@@ -783,7 +846,7 @@
             <div class="space-y-4 text-sm text-slate-300">
                 <p><strong class="text-slate-100">1. Extract Module:</strong> Reads unstructured clinical physician notes (`data/raw_notes.json`) using Pandas with validation.</p>
                 <p><strong class="text-slate-100">2. Transform Module:</strong> Invokes `google-genai` SDK using `gemini-3.8-flash`. Applies Pydantic schema enforcing structured JSON attributes (`icd10_code`, `icd10_description`, `reasoning`).</p>
-                <p><strong class="text-slate-100">3. Quota Engine:</strong> Includes precise 12-second request pacing and exponential backoff to fit within free-tier API quotas (5 RPM / 20 RPD).</p>
+                <p><strong class="text-slate-100">3. Quota Engine:</strong> Includes precise request pacing and exponential backoff to fit within free-tier API quotas.</p>
                 <p><strong class="text-slate-100">4. Load Module:</strong> Persists records into DuckDB (`clinical_notes.duckdb`) columnar database with deduplication logic.</p>
                 
                 <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono text-xs text-emerald-400 overflow-x-auto">
@@ -800,7 +863,7 @@
         </div>
     </div>
 
-    <!-- MODAL 2: HEALTHIFY ME Modal -->
+    <!-- MODAL 3: HEALTHIFY ME Modal -->
     <div id="modal-healthify" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
         <div class="glass-panel max-w-2xl w-full rounded-2xl p-6 sm:p-8 space-y-6 max-h-[90vh] overflow-y-auto">
             <div class="flex items-start justify-between border-b border-slate-800 pb-4">
